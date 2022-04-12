@@ -26,7 +26,10 @@ const ROUTES = [
   {
     path: 'member/:id',
     component: MemberDetailsComponent,
-    pathMatch: "full" 
+  },
+   {
+    path: 'add-member',
+    component: MemberDetailsComponent,
   },
   {
     path: 'login',

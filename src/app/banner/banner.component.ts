@@ -15,20 +15,7 @@ export class BannerComponent implements OnInit {
 
   }
 
-  goToAddMemberForm() {
-    
-  }
-
-  goToViewTeams() {
-    
-  }
-
-  goToViewMembers() {
-  
-  }
-
   logout() {
     this.appService.username = '';
-   
   }
 }
