@@ -17,8 +17,10 @@ export class MembersComponent implements OnInit {
     this.getMembers()
   }
 
-  goToAddMemberForm() {
-    
+
+
+  goToMemberDetails(id: number) {
+    console.log(id)
   }
 
   getMembers(){

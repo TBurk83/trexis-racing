@@ -13,7 +13,17 @@ export class BannerComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  goToAddMemberForm() {
+    
+  }
 
+  goToViewTeams() {
+    
+  }
+
+    goToViewMembers() {
+    
+  }
   logout() {
     this.appService.username = '';
    

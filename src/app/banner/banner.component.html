@@ -1,16 +1,59 @@
-<div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <img id="raceCar" class="pull-right" src="https://purepng.com/public/uploads/large/purepng.com-mclaren-650s-gt3-yellow-race-carcarvehicletransportmclarenrace-car-961524644630j4tgq.png">
-      <h1 class="display-4">Trexis Racing</h1>
-      <p class="lead">Redefining digital frontiers.</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"
+            ><img
+                src="https://purepng.com/public/uploads/large/purepng.com-formula-1-flagformula-1racing-carsport-carformula-carsflag-1701527485044n3idj.png"
+                alt=""
+                width="64px"
+        /></a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a (click)="goToViewMembers()" href="javascript:void(0)" class="nav-link" aria-current="page">
+                        Add Member</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a (click)="goToAddMemberForm()" href="javascript:void(0)" class="nav-link" aria-current="page">
+                        Add Member</a
+                    >
+                </li>
+                <li class="nav-item">
+                    <a (click)="goToViewTeams()" href="javascript:void(0)" class="nav-link" aria-current="page">
+                        View Teams</a
+                    >
+                </li>
+            </ul>
+            <span *ngIf="appService.username" class="navbar-text welcome">
+                Welcome {{ appService.username }},
+                <span (click)="logout()" class="logout text-primary">logout here</span>
+            </span>
+        </div>
     </div>
-  </div>
-  <div class="container-fluid">
+</nav>
+<div class="container-fluid">
     <div class="row">
-      <div class="col-12">
-        <p *ngIf="appService.username" class="welcome">Welcome {{ appService.username }}, <span (click)="logout()" class="logout text-primary">logout here</span></p>
-      </div>
+        <div class="col">
+            <div class="jumbotron jumbotron-fluid">
+                <img
+                    id="raceCar"
+                    class="pull-right"
+                    src="https://purepng.com/public/uploads/large/purepng.com-mclaren-650s-gt3-yellow-race-carcarvehicletransportmclarenrace-car-961524644630j4tgq.png"
+                />
+                <h1 class="display-4">Trexis Racing</h1>
+                <p class="lead">Redefining digital frontiers.</p>
+            </div>
+        </div>
     </div>
-  </div>
-  
-  
+</div>
