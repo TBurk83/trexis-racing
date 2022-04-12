@@ -60,11 +60,11 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
     this.appService.getMember(id).subscribe((member: any) => (this.member = member));
   }
 
-   updateMember(id: number, member: any) {
-     this.appService.updateMember(id, member).subscribe((data: any) => {console.log(data) });
-   }
+  updateMember(id: number, member: any) {
+    this.appService.updateMember(id, member).subscribe((data: any) => {console.log(data) });
+  }
   
-   createMember(id: number) {
+  createMember(id: number) {
     this.appService.createMember(id).subscribe((member: any) => (this.member = member));
   }
 
