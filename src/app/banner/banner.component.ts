@@ -5,17 +5,15 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.css']
+  styleUrls: ['./banner.component.css'],
 })
 export class BannerComponent implements OnInit {
+  constructor(public appService: AppService, private router: Router) {}
 
-  constructor(public appService: AppService, private router: Router) { }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   logout() {
     this.appService.username = '';
+    this.router.navigate(['/login']);
   }
 }

@@ -5,23 +5,28 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
-  styleUrls: ['./members.component.css']
+  styleUrls: ['./members.component.css'],
 })
 export class MembersComponent implements OnInit {
-
   members: any[] = [];
 
-  constructor(public appService: AppService, private router: Router) { }
+  constructor(public appService: AppService, private router: Router) {}
 
   ngOnInit(): void {
-    this.getMembers()
+    if (this.appService.username === '') {
+      this.router.navigate(['/login']);
+    } else {
+      this.getMembers();
+    }
   }
 
-  removeMember(id: number) {
-    console.log(id)
+  public removeMember(id: number) {
+    this.appService.deleteMember(id).subscribe((data: any) => {
+      this.getMembers();
+    });
   }
 
-  getMembers(){
+  getMembers() {
     this.appService.getMembers().subscribe((members: any) => (this.members = members));
   }
 }

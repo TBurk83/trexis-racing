@@ -8,9 +8,17 @@
   .logout {
     cursor: pointer;
     text-transform: lowercase;
+    color: #fff;
   }
   
   .welcome {
     text-transform: capitalize;
+    color:#fff;
+    display: inline-block;
+    right: 16px;
+    position: absolute;
+    z-index:2;
   }
+
+  
   

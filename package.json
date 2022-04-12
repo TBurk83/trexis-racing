@@ -9,11 +9,11 @@
     "start": "npm-run-all -p build server db",
     "start-dev": "npm-run-all -p client server db",
     "test": "ng test",
-    "db": "json-server db.json",
+    "db": "json-server db.json -m ./node_modules/json-server-auth",
     "client": "ng serve",
     "server": "nodemon server.js"
   },
-   "husky": {
+  "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
