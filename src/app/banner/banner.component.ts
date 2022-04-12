@@ -12,7 +12,9 @@ export class BannerComponent implements OnInit {
   constructor(public appService: AppService, private router: Router) { }
 
   ngOnInit(): void {
+
   }
+
   goToAddMemberForm() {
     
   }
@@ -21,12 +23,12 @@ export class BannerComponent implements OnInit {
     
   }
 
-    goToViewMembers() {
-    
+  goToViewMembers() {
+  
   }
+
   logout() {
     this.appService.username = '';
    
   }
-
 }

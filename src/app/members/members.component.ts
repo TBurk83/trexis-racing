@@ -17,9 +17,7 @@ export class MembersComponent implements OnInit {
     this.getMembers()
   }
 
-
-
-  goToMemberDetails(id: number) {
+  removeMember(id: number) {
     console.log(id)
   }
 

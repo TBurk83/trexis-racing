@@ -24,9 +24,15 @@ const ROUTES = [
     component: MembersComponent
   },
   {
+    path: 'member/:id',
+    component: MemberDetailsComponent,
+    pathMatch: "full" 
+  },
+  {
     path: 'login',
     component: LoginComponent
-  }
+  },
+  // {path: '**', component: PageNotFoundComponent}
 ];
 
 // Notice how both FormsModule and ReactiveFormsModule imported...choices, choices!

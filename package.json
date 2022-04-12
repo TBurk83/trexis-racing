@@ -1,6 +1,7 @@
 {
   "name": "trexis-racing",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "ng": "ng",
     "build": "ng build",
@@ -12,7 +13,14 @@
     "client": "ng serve",
     "server": "nodemon server.js"
   },
-  "private": true,
+   "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,scss,less,md,ts,html,component.html}": "prettier --write"
+  },
   "dependencies": {
     "@angular/animations": "^13.3.2",
     "@angular/common": "^13.3.2",
@@ -46,6 +54,7 @@
     "@angular/compiler-cli": "^13.3.2",
     "@types/jasmine": "^4.0.2",
     "@types/node": "^17.0.23",
+    "husky": "^7.0.4",
     "jasmine-core": "^4.0.1",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
