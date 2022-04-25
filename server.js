@@ -4,11 +4,26 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const path = require('path');
 const request = require('request');
+const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
+
 var hsts = require('hsts');
 var xssFilter = require('x-xss-protection');
 var nosniff = require('dont-sniff-mimetype');
 
 const app = express();
+
+app.use(
+  expressCspHeader({
+    directives: {
+      'default-src': [SELF],
+      'script-src': [SELF, INLINE],
+      'style-src': [SELF],
+      'img-src': ['data:', 'purepng.com'],
+      'worker-src': [NONE],
+      'block-all-mixed-content': false,
+    },
+  })
+);
 
 app.use(cors());
 app.use(express.static('assets'));
