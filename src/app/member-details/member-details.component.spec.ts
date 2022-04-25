@@ -33,10 +33,33 @@ describe('MemberDetailsComponent', () => {
   });
 
   it('should render title', () => {
-    fixture.detectChanges();
     const compiled = fixture.nativeElement;
     expect(compiled.querySelector('.lead').textContent).toContain('Add Member to a Racing Team');
   });
+
+  it('should have a form with class member-form', waitForAsync(() => {
+    comp.member = { id: -1, firstName: '', lastName: '', jobTitle: '', team: '', status: '' };
+
+    fixture.detectChanges();
+    // Arrange & Assert
+    const el = fixture.debugElement.query(By.css('form.member-form'));
+    expect(el).toBeTruthy();
+  }));
+
+  it('should call the submitForm method when the member-form is submitted', waitForAsync(() => {
+    comp.member = { id: -1, firstName: '', lastName: '', jobTitle: '', team: '', status: '' };
+
+    fixture.detectChanges();
+    // Arrange
+    const el = fixture.debugElement.query(By.css('.member-form'));
+    const fnc = spyOn(comp, 'onSubmit');
+
+    // Act
+    el.triggerEventHandler('ngSubmit', null);
+
+    // Assert
+    expect(fnc).toHaveBeenCalled();
+  }));
 
   it(`should set submitted to true`, waitForAsync(() => {
     comp.onSubmit();

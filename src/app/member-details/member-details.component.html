@@ -2,7 +2,7 @@
   <h3 class="text-center lead">{{ title }}</h3>
   <br />
   <!--Template Driven Form or Model Driven Form?-->
-  <form #memberForm="ngForm" (ngSubmit)="onSubmit()" *ngIf="member">
+  <form #memberForm="ngForm" class="member-form" (ngSubmit)="onSubmit()" *ngIf="member">
     <div>
       <div class="row">
         <div class="col-md-6">

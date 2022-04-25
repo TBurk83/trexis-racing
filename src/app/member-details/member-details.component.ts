@@ -26,9 +26,10 @@ export class MemberDetailsComponent implements OnInit, OnChanges {
     private router: Router
   ) {}
 
+  private id: number = -1;
+
   public teams: [] = [];
   public member!: Member;
-  private id: number = -1;
   public title = 'Add Member to a Racing Team';
 
   ngOnInit(): void {
