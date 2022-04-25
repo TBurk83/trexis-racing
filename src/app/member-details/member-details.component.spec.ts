@@ -21,6 +21,7 @@ describe('MemberDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MemberDetailsComponent);
     comp = fixture.componentInstance;
+    comp.member = { id: -1, firstName: '', lastName: '', jobTitle: '', team: '', status: '' };
     fixture.detectChanges();
   });
 
@@ -38,8 +39,6 @@ describe('MemberDetailsComponent', () => {
   });
 
   it('should have a form with class member-form', waitForAsync(() => {
-    comp.member = { id: -1, firstName: '', lastName: '', jobTitle: '', team: '', status: '' };
-
     fixture.detectChanges();
     // Arrange & Assert
     const el = fixture.debugElement.query(By.css('form.member-form'));
@@ -47,43 +46,32 @@ describe('MemberDetailsComponent', () => {
   }));
 
   it('should call the submitForm method when the member-form is submitted', waitForAsync(() => {
-    comp.member = { id: -1, firstName: '', lastName: '', jobTitle: '', team: '', status: '' };
-
-    fixture.detectChanges();
-    // Arrange
     const el = fixture.debugElement.query(By.css('.member-form'));
     const fnc = spyOn(comp, 'onSubmit');
 
-    // Act
     el.triggerEventHandler('ngSubmit', null);
 
-    // Assert
     expect(fnc).toHaveBeenCalled();
   }));
 
-  it(`should set submitted to true`, waitForAsync(() => {
-    comp.onSubmit();
-    expect(comp.memberForm.submitted).toBeTruthy();
-  }));
-
-  // it(`should call the onSubmit method`, waitForAsync(() => {
-  //   spyOn(comp, 'onSubmit');
-  //   HTMLElement = fixture.debugElement.query(By.css('button')).nativeElement;
-  //   HTMLElement.click();
-  //   expect(comp.onSubmit).toHaveBeenCalled();
-  // }));
-
   it(`form should be invalid`, waitForAsync(() => {
-    comp.memberForm.controls['firstName'].setValue('');
-    comp.memberForm.controls['lastName'].setValue('');
-    comp.memberForm.controls['jobTitle'].setValue('');
-    expect(comp.memberForm.valid).toBeFalsy();
+    fixture.whenStable().then(() => {
+      comp.memberForm.controls['firstName'].setValue('');
+      comp.memberForm.controls['lastName'].setValue('');
+      comp.memberForm.controls['jobTitle'].setValue('');
+      expect(comp.memberForm.valid).toBeFalsy();
+    });
   }));
 
   it(`form should be valid`, waitForAsync(() => {
-    comp.memberForm.controls['firstName'].setValue('Trevor');
-    comp.memberForm.controls['lastName'].setValue('Burkholder');
-    comp.memberForm.controls['jobTitle'].setValue('Speed Racer');
-    expect(comp.memberForm.valid).toBeTruthy();
+    fixture.whenStable().then(() => {
+      comp.memberForm.controls['firstName'].setValue('Trevor');
+      comp.memberForm.controls['lastName'].setValue('Burkholder');
+      comp.memberForm.controls['jobTitle'].setValue('Speed Racer');
+      comp.memberForm.controls['team'].setValue('Team Speed Racer');
+      comp.memberForm.controls['status'].setValue('Active');
+
+      expect(comp.memberForm.valid).toBeTruthy();
+    });
   }));
 });
