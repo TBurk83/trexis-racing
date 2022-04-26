@@ -54,3 +54,90 @@ export class AppService {
     return [];
   }
 }
+
+export const MockMembers = [
+  {
+    id: 3,
+    firstName: 'Jeb',
+    lastName: 'Jackson',
+    jobTitle: 'Reserve Driver',
+    team: 'Formula 2 - Car 54',
+    status: 'Active',
+  },
+  {
+    firstName: 'adwawd',
+    lastName: 'awdawd',
+    team: 'World Endurance Championship - Car 5',
+    jobTitle: 'wadawd',
+    status: 'Active',
+    id: 7,
+  },
+  {
+    firstName: 'bebo',
+    lastName: 'collins',
+    jobTitle: 'beep',
+    status: 'Inactive',
+    team: 'Formula 2 - Car 63',
+    id: 8,
+  },
+  {
+    firstName: 'awdawd',
+    lastName: 'adawd',
+    jobTitle: 'awdawda',
+    status: 'Active',
+    team: 'World Endurance Championship - Car 5',
+    id: 9,
+  },
+];
+
+export const MockMember = {
+  id: 3,
+  firstName: 'Jeb',
+  lastName: 'Jackson',
+  jobTitle: 'Reserve Driver',
+  team: 'Formula 2 - Car 54',
+  status: 'Active',
+};
+
+export const MockTeams = [
+  {
+    id: 1,
+    teamNameName: 'Formula 1 - Car 77',
+  },
+  {
+    id: 2,
+    teamName: 'Formula 1 - Car 8',
+  },
+  {
+    id: 3,
+    teamName: 'Formula 2 - Car 54',
+  },
+  {
+    id: 4,
+    teamName: 'Formula 2 - Car 63',
+  },
+  {
+    id: 5,
+    teamName: 'Deutsche Tourenwagen Masters - Car 117',
+  },
+  {
+    id: 6,
+    teamName: 'Deutsche Tourenwagen Masters - Car 118',
+  },
+  {
+    id: 7,
+    teamName: 'World Endurance Championship - Car 99',
+  },
+  {
+    id: 8,
+    teamName: 'World Endurance Championship - Car 5',
+  },
+  {
+    id: 9,
+    teamName: 'World Rally Championship - Car 77',
+  },
+  {
+    id: 10,
+    teamName: 'World Rally Championship - Car 90',
+  },
+];

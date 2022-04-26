@@ -3,18 +3,27 @@ import { BrowserModule, By } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DebugElement } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
+import { HttpClientModule, HttpRequest, HttpParams } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MemberDetailsComponent } from './member-details.component';
+import { AppService, MockMember, MockTeams } from '../app.service';
 
 describe('MemberDetailsComponent', () => {
+  let service: AppService;
+  let httpMock: HttpTestingController;
   let comp: MemberDetailsComponent;
   let fixture: ComponentFixture<MemberDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MemberDetailsComponent],
-      imports: [BrowserModule, FormsModule, HttpClientTestingModule, RouterTestingModule],
+      imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientTestingModule,
+        HttpClientModule,
+        RouterTestingModule,
+      ],
     }).compileComponents();
   });
 
@@ -22,6 +31,8 @@ describe('MemberDetailsComponent', () => {
     fixture = TestBed.createComponent(MemberDetailsComponent);
     comp = fixture.componentInstance;
     comp.member = { id: -1, firstName: '', lastName: '', jobTitle: '', team: '', status: '' };
+    service = TestBed.inject(AppService);
+    httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
 
@@ -59,6 +70,8 @@ describe('MemberDetailsComponent', () => {
       comp.memberForm.controls['firstName'].setValue('');
       comp.memberForm.controls['lastName'].setValue('');
       comp.memberForm.controls['jobTitle'].setValue('');
+      comp.memberForm.controls['team'].setValue('');
+      comp.memberForm.controls['status'].setValue('');
       expect(comp.memberForm.valid).toBeFalsy();
     });
   }));
@@ -73,5 +86,26 @@ describe('MemberDetailsComponent', () => {
 
       expect(comp.memberForm.valid).toBeTruthy();
     });
+  }));
+
+  it('should return an Observable<MockMember{}>', waitForAsync(() => {
+    expect(service).toBeTruthy();
+
+    const id: number = 3;
+
+    const expectedUrl = `http://localhost:8000/api/members/${id}`;
+
+    service.getMember(id).subscribe((res) => expect(res).toBe(MockMember));
+
+    const req = httpMock.expectOne(expectedUrl);
+    expect(req.request.method).toBe('GET');
+
+    req.flush(MockMember);
+  }));
+
+  it('should return an Observable<MockTeams[]>', waitForAsync(() => {
+    expect(service).toBeTruthy();
+
+    service.getTeams().subscribe((res) => expect(res).toBe(MockTeams));
   }));
 });

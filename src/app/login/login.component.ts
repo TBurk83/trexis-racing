@@ -1,7 +1,7 @@
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppService } from '../app.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +9,11 @@ import { AppService } from '../app.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+  @ViewChild('loginForm') loginForm: NgForm;
+
   username: string = '';
   password: string = '';
+  title: string = 'Login';
 
   constructor(private router: Router, private appService: AppService) {}
 
