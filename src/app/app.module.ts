@@ -11,29 +11,27 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppService } from './app.service';
 
-
 // We may be missing a route...
 const ROUTES = [
   {
-    path: '',
+    path: 'login',
     redirectTo: 'login',
-    pathMatch: 'full',
   },
   {
     path: 'members',
-    component: MembersComponent
+    component: MembersComponent,
   },
   {
     path: 'member/:id',
     component: MemberDetailsComponent,
   },
-   {
+  {
     path: 'add-member',
     component: MemberDetailsComponent,
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
   },
   // {path: '**', component: PageNotFoundComponent}
 ];
@@ -45,16 +43,16 @@ const ROUTES = [
     LoginComponent,
     BannerComponent,
     MemberDetailsComponent,
-    MembersComponent
+    MembersComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(ROUTES, { useHash: true }),
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [AppService, HttpClient],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

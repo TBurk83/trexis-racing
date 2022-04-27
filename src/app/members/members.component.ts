@@ -9,11 +9,12 @@ import { Router } from '@angular/router';
 })
 export class MembersComponent implements OnInit {
   members: any[] = [];
+  username: string = this.appService.username;
 
   constructor(public appService: AppService, private router: Router) {}
 
   ngOnInit(): void {
-    if (this.appService.username === '') {
+    if (this.username === '') {
       this.router.navigate(['/login']);
     } else {
       this.getMembers();

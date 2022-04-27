@@ -141,3 +141,18 @@ export const MockTeams = [
     teamName: 'World Rally Championship - Car 90',
   },
 ];
+
+export const MockUsers = [
+  {
+    id: 1,
+    name: 'trevor',
+    username: 'tburk83@pm.me',
+    password: 'pass',
+  },
+  {
+    id: 2,
+    name: 'voltron',
+    username: 'voltron@email.com',
+    password: 'lion',
+  },
+];

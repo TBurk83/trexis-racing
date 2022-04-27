@@ -1,29 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const path = require('path');
 const request = require('request');
-const { expressCspHeader, INLINE, NONE, SELF } = require('express-csp-header');
 
 var hsts = require('hsts');
 var xssFilter = require('x-xss-protection');
 var nosniff = require('dont-sniff-mimetype');
 
 const app = express();
-
-app.use(
-  expressCspHeader({
-    directives: {
-      'default-src': [SELF],
-      'script-src': [SELF, INLINE],
-      'style-src': [SELF],
-      'img-src': ['data:', 'purepng.com'],
-      'worker-src': [NONE],
-      'block-all-mixed-content': false,
-    },
-  })
-);
 
 app.use(cors());
 app.use(express.static('assets'));
@@ -33,11 +19,12 @@ app.disable('x-powered-by');
 app.use(xssFilter());
 app.use(nosniff());
 app.set('etag', false);
-app.use(
-  helmet({
-    noCache: true,
-  })
-);
+// Was disrupting asset loading due to mysterious csp error
+// app.use(
+//   helmet({
+//     noCache: true,
+//   })
+// );
 app.use(
   hsts({
     maxAge: 15552000, // 180 days in seconds

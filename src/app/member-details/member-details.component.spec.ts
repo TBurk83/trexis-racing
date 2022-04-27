@@ -1,29 +1,23 @@
 import { TestBed, waitForAsync, ComponentFixture } from '@angular/core/testing';
 import { BrowserModule, By } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DebugElement } from '@angular/core';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientModule, HttpRequest, HttpParams } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { MemberDetailsComponent } from './member-details.component';
 import { AppService, MockMember, MockTeams } from '../app.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
 
 describe('MemberDetailsComponent', () => {
   let service: AppService;
   let httpMock: HttpTestingController;
   let comp: MemberDetailsComponent;
+  let router: Router;
   let fixture: ComponentFixture<MemberDetailsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [MemberDetailsComponent],
-      imports: [
-        BrowserModule,
-        FormsModule,
-        HttpClientTestingModule,
-        HttpClientModule,
-        RouterTestingModule,
-      ],
+      imports: [BrowserModule, FormsModule, HttpClientTestingModule, RouterTestingModule],
     }).compileComponents();
   });
 
@@ -32,6 +26,7 @@ describe('MemberDetailsComponent', () => {
     comp = fixture.componentInstance;
     comp.member = { id: -1, firstName: '', lastName: '', jobTitle: '', team: '', status: '' };
     service = TestBed.inject(AppService);
+    router = TestBed.inject(Router);
     httpMock = TestBed.inject(HttpTestingController);
     fixture.detectChanges();
   });
@@ -62,6 +57,20 @@ describe('MemberDetailsComponent', () => {
 
     el.triggerEventHandler('ngSubmit', null);
 
+    expect(fnc).toHaveBeenCalled();
+  }));
+
+  it('should call createMember method if onSubmit method is called is the route is /add-member', waitForAsync(() => {
+    spyOnProperty(router, 'url', 'get').and.returnValue('/add-member');
+    const fnc = spyOn(comp, 'createMember');
+    fnc(MockMember);
+    expect(fnc).toHaveBeenCalled();
+  }));
+
+  it('should call updateMethod method if onSubmit method is called is the route is /member-details', waitForAsync(() => {
+    spyOnProperty(router, 'url', 'get').and.returnValue('/member-details');
+    const fnc = spyOn(comp, 'updateMember');
+    fnc(3, MockMember);
     expect(fnc).toHaveBeenCalled();
   }));
 
